@@ -201,6 +201,28 @@ int *next_shape (void)
    return next;
 }
 
+
+/**************************************************************************************************************************************/
+void arq(void)	
+
+{
+    FILE *arq;
+   
+
+	 char *name = getenv("LOGNAME");
+
+      if (!name)
+         name = "anonymous";
+
+
+    arq = fopen("recordes.txt","a");
+    
+
+    fprintf (arq, "%7d\t   %5d\t %3d\t  %s\n", points * level, points, level, name);
+
+    fclose(arq);  
+}
+/*
 void show_high_score (void)
 {
 #ifdef ENABLE_HIGH_SCORE
@@ -224,7 +246,10 @@ void show_high_score (void)
    fprintf (stderr, "  Score\tPoints\tLevel\tName\n");
    system ("cat " HIGH_SCORE_FILE);
 #endif /* ENABLE_HIGH_SCORE */
-}
+
+	
+	/**************************************************************************************************************************************/
+
 
 void show_online_help (void)
 {
@@ -389,9 +414,11 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
             textattr(RESETATTR);
 
             printf ("Your score: %d points x level %d = %d\n\n", points, level, points * level);
-            show_high_score ();
+			arq();	
             break;
          }
+
+
 
          for (j = B_SIZE; j--; shadow[j] = 0)
             ;
