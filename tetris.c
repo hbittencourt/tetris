@@ -218,7 +218,7 @@ void arq(void)
     arq = fopen("recordes.txt","a");
     
 
-    fprintf (arq, "%7d\t   %5d\t %3d\t  %s\n", points * level, points, level, name);
+    fprintf (arq, "%7d\t   %5d\t%3d\t %s\n", points * level, points, level, name);
 
     fclose(arq);  
 }
