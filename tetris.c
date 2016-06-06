@@ -203,6 +203,10 @@ int *next_shape (void)
 
 
 /**************************************************************************************************************************************/
+
+//Arquivo de Recordes
+
+
 void arq(void)	
 
 {
@@ -218,7 +222,7 @@ void arq(void)
     arq = fopen("recordes.txt","a");
     
 
-    fprintf (arq, "%7d\t   %5d\t %3d\t  %s\n", points * level, points, level, name);
+    fprintf (arq, "%7d\t   %5d\t%3d\t %s\n", points * level, points, level, name);
 
     fclose(arq);  
 }
@@ -250,6 +254,9 @@ void show_high_score (void)
 	
 	/**************************************************************************************************************************************/
 
+
+
+//COMO JOGAR - Guia na tela
 
 void show_online_help (void)
 {
