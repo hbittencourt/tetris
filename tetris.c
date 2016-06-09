@@ -30,6 +30,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "cor.h"
 #include "conio.h"
 #include "tetris.h"
 
@@ -347,6 +348,9 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
 {
 
     system("clear");
+	int color = 1;
+
+	setfontcolor(color);
 
     int op = 0;
 
