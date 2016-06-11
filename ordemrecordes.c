@@ -2,7 +2,7 @@
 //opção 2-recordes
 #include <stdio.h>
 #include <string.h>
-#define SIZE 999999
+#define SIZE 9999999
 	
 
 struct stscore{
@@ -18,7 +18,7 @@ int ascore;
 int main(void)
 {
 	FILE *arquivo;
-	int j,k;
+	int j,k,count=0;
 	char nome[50];
 
 	arquivo = fopen("recordes.txt","r");
@@ -29,6 +29,7 @@ int main(void)
 	{
 		fscanf(arquivo,"%d",&score[k].ascore);
 		k++;
+		count++;
 	}
 	
 	fclose(arquivo);
@@ -50,12 +51,12 @@ int main(void)
 
 
 //ordena struct de acordo com a pontuacao
-	for(k=0;k<SIZE-1;k++)
+	for(k=0;k<count-1;k++) //for executa tantas vezes qunto o numero de linhas(count) -1
 	{
-        //copia a struct para uma auxiliar
-		strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
-		aux.ascore=score[k].ascore;
-		for(j=k+1;j<SIZE;j++)//compara uma struct com a seguinte no vetor
+	//copia a struct para uma auxiliar
+	strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
+	aux.ascore=score[k].ascore;
+		for(j=k+1;j<count;j++)//compara uma struct com a seguinte no vetor
 		{
 			if(score[j].ascore>score[k].ascore)
 			{
@@ -68,7 +69,6 @@ int main(void)
 			}	
 		}
 	}
-
 
 
 	printf("pontuacao:\n");		//printa top 10
