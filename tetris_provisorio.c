@@ -235,24 +235,22 @@ void game_over()
 //Arquivo de Recordes
 
 
-void arq(void)
+void arq(char jogador[])
 
 {
     FILE *arq;
 
-
-    char *name = getenv("LOGNAME");
-
-    if (!name)
-        name = "anonymous";
-
-
     arq = fopen("recordes.txt","a");
-
 
     fprintf (arq, "%d\n", points * level);
 
     fclose(arq);
+
+    arq = fopen("nomes.txt","a");
+    
+    fprintf (arq, "%s\n", jogador);
+    
+    fclose (arq);
 }
 /*
 void show_high_score (void)
@@ -353,6 +351,7 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
 	textcolor(0x2);
 
     int op = 0;
+    char player[50];    
 
     while (op != 3)
     {
@@ -369,6 +368,8 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
 
         switch( op ) {
 		    case 1:
+                printf("nome do jogador: ");
+                scanf("%s",player);
 		        goto jogo;
 		        break;
 		    case 2:
@@ -493,7 +494,7 @@ jogo:
 		game_over();
 
                 printf ("Your score: %d points x level %d = %d\n\n", points, level, points * level);
-                arq();
+                arq(player);
                 break;
             }
 
