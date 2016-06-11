@@ -34,7 +34,6 @@ int main(void)
 	
 	fclose(arquivo);
 
-//arrumar leitura da string
 	arquivo = fopen("nomes.txt","r");  
 	
 	k=0;
