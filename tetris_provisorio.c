@@ -444,7 +444,7 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
 		        goto jogo;
 		        break;
 		    case 2:
-
+                recordes();
 		        break;
 		    case 3:
 		        return 0;
