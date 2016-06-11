@@ -20,3 +20,5 @@ daario_naharis
 tormund_giantsbane
 HODOR_willys
 jorah_mormont
+victor_varallo
+victor
