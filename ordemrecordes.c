@@ -2,7 +2,7 @@
 //opção 2-recordes
 #include <stdio.h>
 #include <string.h>
-#define SIZE 999
+#define SIZE 999999
 	
 
 struct stscore{
@@ -20,7 +20,6 @@ int main(void)
 	FILE *arquivo;
 	int j,k;
 	char nome[50];
-	//char *nome;	
 
 	arquivo = fopen("recordes.txt","r");
 	
@@ -56,7 +55,7 @@ int main(void)
         //copia a struct para uma auxiliar
 		strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
 		aux.ascore=score[k].ascore;
-		for(j=k+1;j<SIZE;j++)
+		for(j=k+1;j<SIZE;j++)//compara uma struct com a seguinte no vetor
 		{
 			if(score[j].ascore>score[k].ascore)
 			{
@@ -74,7 +73,7 @@ int main(void)
 
 	printf("pontuacao:\n");		//printa top 10
 	for(k=0;k<10;k++)
-		printf("%d : \t%d\t-%s\n",k+1,score[k].ascore,score[k].anome);
+		printf("%do : \t%d\t-%s\n",k+1,score[k].ascore,score[k].anome);
 
 	return 0;
 }	
