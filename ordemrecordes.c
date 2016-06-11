@@ -2,7 +2,7 @@
 //opção 2-recordes
 #include <stdio.h>
 #include <string.h>
-#define SIZE 11
+#define SIZE 999
 	
 /***********************************************************************************************************/
 //
@@ -79,7 +79,7 @@ int main(void)
 
 	printf("pontuacao:\n");		//printa top 10
 	for(k=0;k<10;k++)
-		printf("%d : %s\t%d\n",k+1,score[k].anome,score[k].ascore);
+		printf("%d : \t%d\t-%s\n",k+1,score[k].ascore,score[k].anome);
 
 	return 0;
 }	
