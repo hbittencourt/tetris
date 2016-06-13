@@ -1,7 +1,7 @@
 daenerys_targaryen
 jon_snow
 victor_varallo
-gregore_clegane
+gregor_clegane
 henrique_bittencourt
 arya_stark
 sansa_stark
@@ -11,7 +11,7 @@ tyrion_lannister
 ramsay_bolton
 cersei_lannister
 sandor_clegane
-khan_drogo
+khal_drogo
 jamie_lannister
 theon_greyjoy
 eddard_stark
