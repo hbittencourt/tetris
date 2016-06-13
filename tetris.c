@@ -18,6 +18,11 @@
  * See the following URLs for more information, first John Tromp's page about
  * the game http://homepages.cwi.nl/~tromp/tetris.html then there's the entry
  * page at IOCCC http://www.ioccc.org/1989/tromp.hint
+ *
+ * Aprimorado por
+ * 		victor.varallo@acad.pucrs.br
+ * 		henrique.bittencourt@acad.pucrs.br
+ * 06-13-2016
  */
 
 #include <signal.h>
@@ -33,17 +38,17 @@
 #include "conio.h"
 #include "tetris.h"
 
-#define SIZE 9999999
+#define SIZE 11
 
-struct stscore{
-char anome[50];
-int ascore;
-}score[SIZE];
+struct stscore {
+    char anome[50];
+    int ascore;
+} score[SIZE];
 
-struct auxscore{
-char anome[50];
-int ascore;
-}aux;
+struct auxscore {
+    char anome[50];
+    int ascore;
+} aux;
 
 static struct termios savemodes;
 static int havemodes = 0;
@@ -69,7 +74,6 @@ static int havemodes = 0;
 #define HIGH_SCORE_FILE "/var/games/tetris.scores"
 #define TEMP_SCORE_FILE "/tmp/tetris-tmp.scores"
 
-#define FUNDO	0x13
 
 char *keys = DEFAULT_KEYS;
 int level = 1;
@@ -103,63 +107,65 @@ int shapes[] = {
 
 void recordes(void)
 {
-	FILE *arquivo;
-	int j,k,count=0;
-	char nome[50];
+    FILE *arquivo;
+    int j,k,count=0;
+    char nome[50];
 
-	arquivo = fopen("recordes.txt","r");
-	
-	k=0;
-	//le o arquivo de recordes e preenche os ascore na struct
-	while (!feof(arquivo))
-	{
-		fscanf(arquivo,"%d",&score[k].ascore);
-		k++;
-		count++;
-	}
-	
-	fclose(arquivo);
+    arquivo = fopen("recordes.txt","r");
 
-	arquivo = fopen("nomes.txt","r");  
-	
-	k=0;
-	//le o arquivo com os nomes e preenche os anome na struct
-	while (!feof(arquivo))
-	{
+    k=0;
+    //le o arquivo de recordes e preenche os ascore na struct
+    while (!feof(arquivo))
+    {
+        fscanf(arquivo,"%d",&score[k].ascore);
+        k++;
+        count++;
+    }
+
+    fclose(arquivo);
+
+    arquivo = fopen("nomes.txt","r");
+
+    k=0;
+    //le o arquivo com os nomes e preenche os anome na struct
+    while (!feof(arquivo))
+    {
         fscanf(arquivo, "%s",nome);
         strcpy(score[k].anome, nome);
-		k++;
-	}
-	
-	fclose(arquivo);
+        k++;
+    }
+
+    fclose(arquivo);
 
 
 
 //ordena struct de acordo com a pontuacao
-	for(k=0;k<count-1;k++) //for executa tantas vezes qunto o numero de linhas(count) -1
-	{
-	//copia a struct para uma auxiliar
-	strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
-	aux.ascore=score[k].ascore;
-		for(j=k+1;j<count;j++)//compara uma struct com a seguinte no vetor
-		{
-			if(score[j].ascore>score[k].ascore)
-			{
-				strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
-				aux.ascore=score[k].ascore;
-				strcpy(score[k].anome, score[j].anome);//score[k].anome=score[j].anome;
-				score[k].ascore=score[j].ascore;
-				strcpy(score[j].anome, aux.anome);//score[j].anome=aux.anome;
-				score[j].ascore=aux.ascore;
-			}	
-		}
-	}
+    for(k=0; k<count-1; k++) //for executa tantas vezes qunto o numero de linhas(count) -1
+    {
+        //copia a struct para uma auxiliar
+        strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
+        aux.ascore=score[k].ascore;
+        for(j=k+1; j<count; j++) //compara uma struct com a seguinte no vetor
+        {
+            if(score[j].ascore>score[k].ascore)
+            {
+                strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
+                aux.ascore=score[k].ascore;
+                strcpy(score[k].anome, score[j].anome);//score[k].anome=score[j].anome;
+                score[k].ascore=score[j].ascore;
+                strcpy(score[j].anome, aux.anome);//score[j].anome=aux.anome;
+                score[j].ascore=aux.ascore;
+            }
+        }
+    }
 
 
-	printf("pontuacao:\n");		//printa top 10
-	for(k=0;k<10;k++)
-		printf("%do : \t%d\t-%s\n",k+1,score[k].ascore,score[k].anome);
-}	
+    printf("Pontuação:\n");		//printa top 10
+    for(k=0; k<10; k++)
+        printf("%do : \t%d\t-%s\n",k+1,score[k].ascore,score[k].anome);
+        printf("\n\n\n\n\n");
+}
+
 
 void alarm_handler (int signal __attribute__ ((unused)))
 {
@@ -275,8 +281,7 @@ int *next_shape (void)
 
     return next;
 }
-
-
+/*******Ascii arts*******/
 void abertura()
 {
     printf("\t\t\t\t████████╗███████╗████████╗██████╗ ██╗███████╗ \n");
@@ -301,7 +306,6 @@ void game_over()
     printf("\t\t\t\t \n");
 }
 
-/**************************************************************************************************************************************/
 
 //Arquivo de Recordes
 
@@ -318,39 +322,11 @@ void arq(char jogador[], int points, int level)
     fclose(arq);
 
     arq = fopen("nomes.txt","a");
-    
+
     fprintf (arq, "%s\n", jogador);
-    
+
     fclose (arq);
 }
-/*
-void show_high_score (void)
-{
-#ifdef ENABLE_HIGH_SCORE
-   FILE *tmpscore;
-
-   if ((tmpscore = fopen (HIGH_SCORE_FILE, "a")))
-   {
-      char *name = getenv("LOGNAME");
-
-      if (!name)
-         name = "anonymous";
-
-      fprintf (tmpscore, "%7d\t %5d\t  %3d\t%s\n", points * level, points, level, name);
-      fclose (tmpscore);
-
-      system ("cat " HIGH_SCORE_FILE "| sort -rn | head -10 >" TEMP_SCORE_FILE
-              "&& cp " TEMP_SCORE_FILE " " HIGH_SCORE_FILE);
-      remove (TEMP_SCORE_FILE);
-   }
-//         puts ("\nHit RETURN to see high scores, ^C to skip.");
-   fprintf (stderr, "  Score\tPoints\tLevel\tName\n");
-   system ("cat " HIGH_SCORE_FILE);
-#endif /* ENABLE_HIGH_SCORE */
-
-
-/**************************************************************************************************************************************/
-
 
 
 //COMO JOGAR - Guia na tela
@@ -409,20 +385,16 @@ int tty_fix (void)
     /* "stty sane" */
     return tcsetattr(fileno(stdin), TCSANOW, &savemodes);
 }
-int jogo()
-{
-
-}
 
 
 int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused)))
 {
 
     system("clear");
-	textcolor(0x2);
+    textcolor(0x2);
 
     int op = 0;
-    char player[50];    
+    char player[50];
 
     while (op != 3)
     {
@@ -438,22 +410,22 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
             printf("Opção Inválida!\n");
 
         switch( op ) {
-		    case 1:
-                printf("nome do jogador: ");
-                scanf("%s",player);
-		        goto jogo;
-		        break;
-		    case 2:
-                recordes();
-		        break;
-		    case 3:
-		        return 0;
-		        break;
+        case 1:
+            printf("nome do jogador: ");
+            scanf("%s",player);
+            goto jogo;
+            break;
+        case 2:
+            recordes();
+            break;
+        case 3:
+            return 0;
+            break;
         }
     }
 
-//Label goto
-jogo:
+	//Label goto
+	jogo:
 
 
     system("clear");
@@ -561,8 +533,9 @@ jogo:
                 clrscr();
                 gotoxy(0,0);
                 textattr(RESETATTR);
-
-		game_over();
+                
+  				textcolor(0x2);
+                game_over();
 
                 printf ("Your score: %d points x level %d = %d\n\n", points, level, points * level);
                 arq(player,points,level);
@@ -577,7 +550,6 @@ jogo:
             while (getchar () - keys[KEY_PAUSE])
                 ;
 
-         //puts ("\e[H\e[J\e[7m");
             sigprocmask (SIG_UNBLOCK, &set, NULL);
         }
 
