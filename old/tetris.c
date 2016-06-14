@@ -77,11 +77,11 @@ static int havemodes = 0;
 #define TEMP_SCORE_FILE "/tmp/tetris-tmp.scores"
 
 
-char *keys = DEFAULT_KEYS;
-int level = 1;
-int points = 0;
-int lines_cleared = 0;
-int board[B_SIZE], shadow[B_SIZE];
+static char *keys = DEFAULT_KEYS;
+static int level = 1;
+static int points = 0;
+static int lines_cleared = 0;
+static int board[B_SIZE], shadow[B_SIZE];
 
 int *peek_shape;                /* peek preview of next shape */
 int *shape;
