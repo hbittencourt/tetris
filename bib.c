@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include "bib.h"
+
 void recordes(void)
 {
     FILE *arquivo;
@@ -33,7 +36,7 @@ void recordes(void)
 
 
 //ordena struct de acordo com a pontuacao
-    for(k=0; k<count-1; k++) //for executa tantas vezes qunto o numero de linhas(count) -1
+    for(k=0; k<10; k++) //for executa tantas vezes qunto o numero de linhas(count) -1
     {
         //copia a struct para uma auxiliar
         strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;

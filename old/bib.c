@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "tetris.h"
 #include "tetris.c"
+#include "conio.h"
+
+
 void recordes(void)
 {
     FILE *arquivo;

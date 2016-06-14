@@ -1,0 +1,11 @@
+all: tetris
+tetris: tetris.o bib.o
+	gcc -o tetris tetris.o bib.o
+tetris.o: tetris.c
+	gcc -o tetris.o -c tetris.c -W -Wall -ansi -pedantic
+bib.o: bib.c bib.h
+	gcc -o bib.o -c bib.c -W -Wall -ansi -pedantic
+clean:
+	rm -rf *.o
+mrproper: cleam
+	rm -rf teste

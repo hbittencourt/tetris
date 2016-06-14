@@ -40,7 +40,7 @@
 #include "conio.h"
 #include "tetris.h"
 
-#define SIZE 11
+#define SIZE 1000000
 
 struct stscore {
     char anome[50];
@@ -85,7 +85,7 @@ static int board[B_SIZE], shadow[B_SIZE];
 
 int *peek_shape;                /* peek preview of next shape */
 int *shape;
-int shapes[] = {
+static int shapes[] = {
     7,  TL,  TC,  MR,
     8,  TR,  TC,  ML,
     9,  ML,  MR,  BC,
