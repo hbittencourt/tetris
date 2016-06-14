@@ -35,8 +35,8 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "bib.h"
 
+#include "bib.h"
 #include "conio.h"
 #include "tetris.h"
 
@@ -85,7 +85,7 @@ static int board[B_SIZE], shadow[B_SIZE];
 
 int *peek_shape;                /* peek preview of next shape */
 int *shape;
-int shapes[] = {
+static int shapes[] = {
     7,  TL,  TC,  MR,
     8,  TR,  TC,  ML,
     9,  ML,  MR,  BC,
@@ -107,7 +107,7 @@ int shapes[] = {
     6,  TC,  BC,  2 * B_COLS,   /* sticks out */
 };
 
-int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused)))
+int main ()
 {
 
     system("clear");

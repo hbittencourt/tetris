@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tetris.c"
+
 void recordes(void)
 {
     FILE *arquivo;
