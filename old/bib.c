@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include "tetris.h"
 #include "tetris.c"
-<<<<<<< HEAD
 #include "conio.h"
 
-=======
->>>>>>> 26e1dab3f5b9879d0f5d58d4488d99288c1de4a0
 
 void recordes(void)
 {
@@ -43,7 +40,7 @@ void recordes(void)
 
 
 //ordena struct de acordo com a pontuacao
-    for(k=0; k<count-1; k++) //for executa tantas vezes qunto o numero de linhas(count) -1
+    for(k=0; k<10; k++) //for executa tantas vezes qunto o numero de linhas(count) -1
     {
         //copia a struct para uma auxiliar
         strcpy(aux.anome, score[k].anome);//aux.anome=score[k].anome;
