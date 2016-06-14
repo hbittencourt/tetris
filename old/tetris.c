@@ -40,7 +40,7 @@
 #include "conio.h"
 #include "tetris.h"
 
-#define SIZE 1000000
+#define SIZE 10
 
 struct stscore {
     char anome[50];
