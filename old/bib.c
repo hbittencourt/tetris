@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include "tetris.h"
 #include "tetris.c"
+<<<<<<< HEAD
 #include "conio.h"
 
+=======
+>>>>>>> 26e1dab3f5b9879d0f5d58d4488d99288c1de4a0
 
 void recordes(void)
 {
