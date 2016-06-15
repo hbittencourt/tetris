@@ -163,7 +163,7 @@ void recordes(void)
     printf("Pontuação:\n");		//printa top 10
     for(k=0; k<10; k++)
         printf("%do : \t%d\t-%s\n",k+1,score[k].ascore,score[k].anome);
-        printf("\n\n\n\n\n");
+    printf("\n\n\n\n\n");
 }
 
 
@@ -424,8 +424,8 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
         }
     }
 
-	//Label goto
-	jogo:
+    //Label goto
+jogo:
 
 
     system("clear");
@@ -533,8 +533,8 @@ int main (int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
                 clrscr();
                 gotoxy(0,0);
                 textattr(RESETATTR);
-                
-  				textcolor(0x2);
+
+                textcolor(0x2);
                 game_over();
 
                 printf ("Your score: %d points x level %d = %d\n\n", points, level, points * level);
